@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Little Bundle — Tia Farmer Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:     #FAF8F4;
+      --cream-mid: #F2EDE4;
+      --cream-deep:#E8DFD0;
+      --gold:      #C4A35A;
+      --gold-light:#D9BC82;
+      --gold-pale: #EFE3C2;
+      --ink:       #1C1916;
+      --ink-mid:   #3A342C;
+      --ink-soft:  #7A6E61;
+      --ink-muted: #B0A494;
+      --white:     #FFFFFF;
+      --serif:     'Playfair Display', Georgia, serif;
+      --sans:      'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    body { cursor: none; }
+    #cursor {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      position: fixed; top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor.hover {
+      width: 40px; height: 40px;
+      background: var(--gold-pale);
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 56px;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--cream-deep);
+      transition: padding 0.4s ease;
+    }
+    nav.scrolled { padding: 14px 56px; }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-weight: 400;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0; height: 0.5px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .nav-cta {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 11px 24px;
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      font-weight: 400;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--ink); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 64px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative arc */
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(196,163,90,0.2);
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(196,163,90,0.12);
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 28px;
+      animation: fadeUp 1s 0.15s ease both;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-quote {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink-muted);
+      font-weight: 400;
+      max-width: 380px;
+      border-left: 1px solid var(--gold);
+      padding-left: 18px;
+      margin-bottom: 44px;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; align-items: center;
+      animation: fadeUp 1s 0.45s ease both;
+    }
+    .btn-primary {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 14px 32px;
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-ghost {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--cream-deep);
+      padding: 14px 0;
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 0.5px solid var(--ink-soft);
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--gold-light); border-color: var(--gold); }
+
+    .hero-cert {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 0.5px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; gap: 12px;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+    .cert-badge {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 0.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cert-badge svg { width: 16px; height: 16px; fill: var(--gold); }
+    .cert-text {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+    .cert-text strong { color: var(--gold); font-weight: 400; }
+
+    /* Hero right — photo mosaic placeholder */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #6b5a47 0%, #3a2e23 40%, #1e1810 100%);
+    }
+    .hero-mosaic {
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .mosaic-cell {
+      background: rgba(255,255,255,0.04);
+      position: relative; overflow: hidden;
+    }
+    .mosaic-cell::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(196,163,90,0.06), transparent);
+    }
+    .mosaic-cell:nth-child(1) { grid-column: span 2; background: rgba(255,255,255,0.06); }
+    .mosaic-cell:nth-child(2) { background: rgba(255,255,255,0.03); }
+    .mosaic-cell:nth-child(3) { background: rgba(255,255,255,0.05); }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      animation: fadeUp 1s 0.9s ease both;
+      z-index: 10;
+    }
+    .scroll-line {
+      width: 0.5px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+    .scroll-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+
+    /* ─── STAT STRIP ─── */
+    .strip {
+      background: var(--cream-deep);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 0.5px solid var(--cream-deep);
+      border-bottom: 0.5px solid var(--cream-deep);
+    }
+    .strip-item {
+      padding: 36px 32px;
+      text-align: center;
+      border-right: 0.5px solid #D8D0C4;
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-num {
+      font-family: var(--serif);
+      font-size: 38px;
+      font-weight: 400;
+      color: var(--gold);
+      display: block;
+    }
+    .strip-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ─── ABOUT / INTRO ─── */
+    .intro-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 580px;
+    }
+    .intro-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(155deg, #7a6553 0%, #3d3025 100%);
+    }
+    .intro-img-decor {
+      position: absolute;
+      bottom: 32px; right: 32px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(196,163,90,0.35);
+    }
+    .intro-img-decor2 {
+      position: absolute;
+      bottom: 52px; right: 52px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(196,163,90,0.2);
+    }
+    .intro-text {
+      background: var(--cream);
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .section-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-body {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      font-weight: 400;
+      margin-bottom: 32px;
+      max-width: 420px;
+    }
+    .inline-link {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--gold);
+      padding-bottom: 3px;
+      transition: color 0.3s;
+    }
+    .inline-link:hover { color: var(--gold); }
+
+    /* ─── GALLERY ─── */
+    .gallery-section {
+      padding: 88px 56px;
+      background: var(--cream);
+    }
+    .gallery-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 44px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 260px 180px;
+      gap: 4px;
+    }
+    .g-cell {
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #7a6553 0%, #3d3025 100%);
+    }
+    .g-cell::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(26,25,22,0);
+      transition: background 0.4s ease;
+    }
+    .g-cell:hover::after { background: rgba(26,25,22,0.25); }
+    .g-cell:nth-child(1) { grid-column: 1 / 6; background: linear-gradient(145deg, #8a7260 0%, #4a3b2e 100%); }
+    .g-cell:nth-child(2) { grid-column: 6 / 10; background: linear-gradient(145deg, #6b5847 0%, #352a20 100%); }
+    .g-cell:nth-child(3) { grid-column: 10 / 13; background: linear-gradient(145deg, #5c4d3d 0%, #2e2419 100%); }
+    .g-cell:nth-child(4) { grid-column: 1 / 4; background: linear-gradient(145deg, #7a6553 0%, #3d3025 100%); }
+    .g-cell:nth-child(5) { grid-column: 4 / 8; background: linear-gradient(145deg, #8f7763 0%, #4d3e30 100%); }
+    .g-cell:nth-child(6) { grid-column: 8 / 13; background: linear-gradient(145deg, #655444 0%, #332820 100%); }
+
+    .gallery-tags {
+      display: flex; gap: 24px; margin-top: 24px;
+    }
+    .g-tag {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      cursor: pointer;
+    }
+    .g-tag.active { color: var(--gold); border-bottom: 0.5px solid var(--gold); padding-bottom: 2px; }
+
+    /* ─── SERVICES ─── */
+    .services-section {
+      background: var(--ink);
+      padding: 88px 56px;
+    }
+    .services-section .section-title { color: var(--cream); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-top: 48px;
+      border: 0.5px solid rgba(255,255,255,0.06);
+    }
+    .service-card {
+      background: var(--ink);
+      padding: 44px 36px;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { background: #232018; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .s-num {
+      font-family: var(--serif);
+      font-size: 52px;
+      font-weight: 400;
+      color: rgba(196,163,90,0.15);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.4s;
+    }
+    .service-card:hover .s-num { color: rgba(196,163,90,0.3); }
+    .s-name {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .s-desc {
+      font-size: 15px;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      font-weight: 400;
+      margin-bottom: 28px;
+    }
+    .s-price {
+      font-family: var(--serif);
+      font-size: 24px;
+      color: var(--gold);
+      font-weight: 400;
+    }
+    .s-price span {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      margin-left: 6px;
+    }
+
+    /* ─── FEATURED / SIGNATURE ─── */
+    .feature-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+    .feature-text {
+      background: var(--gold-pale);
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .feature-text .section-eyebrow { color: var(--ink-soft); }
+    .feature-text .section-title { color: var(--ink); }
+    .feature-body {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--ink-mid);
+      font-weight: 400;
+      margin-bottom: 36px;
+      max-width: 400px;
+    }
+    .feature-img {
+      background: linear-gradient(145deg, #9a8470 0%, #4a3c2e 100%);
+      position: relative; overflow: hidden;
+    }
+    .feature-tag {
+      position: absolute;
+      bottom: 32px; left: 32px;
+      background: var(--ink);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+    }
+
+    /* ─── BOOKING ─── */
+    .booking-section {
+      background: var(--cream-mid);
+      padding: 100px 56px;
+      text-align: center;
+    }
+    .booking-inner { max-width: 620px; margin: 0 auto; }
+    .booking-section .section-title { margin-bottom: 14px; }
+    .booking-sub {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.9;
+      font-weight: 400;
+      margin-bottom: 48px;
+    }
+    .booking-widget-placeholder {
+      border: 0.5px dashed var(--gold);
+      padding: 52px 40px;
+      background: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .booking-widget-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 0.5px dashed rgba(196,163,90,0.3);
+      pointer-events: none;
+    }
+    .bwp-label {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .bwp-note {
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 56px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 40px;
+      border-bottom: 0.5px solid rgba(255,255,255,0.07);
+      margin-bottom: 36px;
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .footer-tagline {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .footer-bio {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      font-weight: 400;
+      max-width: 280px;
+    }
+    .footer-col-title {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none; display: flex; flex-direction: column; gap: 10px;
+    }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 400;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+    }
+    .footer-cert-small {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(196,163,90,0.5);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE BASICS ─── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 100px 24px 64px; min-height: 100vh; }
+      .strip { grid-template-columns: 1fr 1fr; }
+      .intro-section { grid-template-columns: 1fr; }
+      .intro-img-wrap { height: 320px; }
+      .gallery-section { padding: 56px 24px; }
+      .gallery-grid { grid-template-rows: 180px 140px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .feature-section { grid-template-columns: 1fr; }
+      .feature-img { height: 300px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      footer { padding: 40px 24px; }
+      .booking-section { padding: 64px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div id="cursor"></div>
+
+  <!-- ─── NAV ─── -->
+  <nav id="main-nav">
+    <a class="nav-logo" href="#">
+      Your Little Bundle
+      <span>Tia Farmer Photography</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#gallery">Portfolio</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#booking">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#booking">Book a Session</a>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Newborn &amp; Infant Photography</div>
+      <h1 class="hero-title">
+        Every tiny detail<br>
+        is worth<br>
+        <em>remembering.</em>
+      </h1>
+      <p class="hero-quote">
+        Newborns change every single day. Those first sleepy curls,
+        those impossibly small fingers — they won't last. Let's make
+        sure you never forget them.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#booking">Book your session</a>
+        <a class="btn-ghost" href="#gallery">View portfolio</a>
+      </div>
+      <div class="hero-cert">
+        <div class="cert-badge">
+          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/>
+          </svg>
+        </div>
+        <div class="cert-text">
+          <strong>Certified</strong> · American Association of<br>
+          Newborn Photography Safety
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-bg"></div>
+      <div class="hero-mosaic">
+        <div class="mosaic-cell"></div>
+        <div class="mosaic-cell"></div>
+        <div class="mosaic-cell"></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span class="scroll-label">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── STRIP ─── -->
+  <div class="strip">
+    <div class="strip-item reveal">
+      <span class="strip-num">2 wks</span>
+      <span class="strip-label">Ideal newborn window</span>
+    </div>
+    <div class="strip-item reveal reveal-delay-1">
+      <span class="strip-num">Safe</span>
+      <span class="strip-label">Certified &amp; trained</span>
+    </div>
+    <div class="strip-item reveal reveal-delay-2">
+      <span class="strip-num">100+</span>
+      <span class="strip-label">Families served</span>
+    </div>
+    <div class="strip-item reveal reveal-delay-3">
+      <span class="strip-num">∞</span>
+      <span class="strip-label">Memories preserved</span>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="intro-section" id="about">
+    <div class="intro-img-wrap">
+      <div class="intro-img-decor"></div>
+      <div class="intro-img-decor2"></div>
+    </div>
+    <div class="intro-text">
+      <div class="section-eyebrow reveal">The artist behind the lens</div>
+      <h2 class="section-title reveal">Hi, I'm Tia —<br><em>and I see the magic</em><br>others rush past.</h2>
+      <p class="section-body reveal">
+        Did you know that newborns begin gaining weight again at just two weeks old?
+        Every day brings change — and every change is something worth holding on to.
+        I created Your Little Bundle because I believe those fleeting, delicate
+        moments deserve to be captured beautifully, safely, and with intention.
+      </p>
+      <p class="section-body reveal" style="margin-bottom: 32px;">
+        As a certified member of the American Association of Newborn Photography Safety,
+        I prioritize your baby's comfort and wellbeing in every pose, every setup,
+        and every shot.
+      </p>
+      <a class="inline-link reveal" href="#booking">Let's work together →</a>
+    </div>
+  </section>
+
+  <!-- ─── GALLERY ─── -->
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-header">
+      <div>
+        <div class="section-eyebrow reveal">Selected work</div>
+        <h2 class="section-title reveal">A glimpse into<br><em>the studio</em></h2>
+      </div>
+      <a class="inline-link reveal" href="#">View full portfolio →</a>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g-cell"></div>
+      <div class="g-cell"></div>
+      <div class="g-cell"></div>
+      <div class="g-cell"></div>
+      <div class="g-cell"></div>
+      <div class="g-cell"></div>
+    </div>
+    <div class="gallery-tags reveal">
+      <span class="g-tag active">Newborn</span>
+      <span class="g-tag">Infant</span>
+      <span class="g-tag">Maternity</span>
+      <span class="g-tag">Family</span>
+      <span class="g-tag">Milestone</span>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section class="services-section" id="services">
+    <div class="section-eyebrow" style="color: var(--gold);" class="reveal">What I offer</div>
+    <h2 class="section-title reveal">Sessions crafted<br>for <em>every milestone</em></h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="s-num">01</div>
+        <div class="s-name">Newborn Sessions</div>
+        <div class="s-desc">Best captured within the first 5–14 days. Sleepy poses, cozy wraps, and all those tiny details — done with safety-first techniques by a certified professional.</div>
+        <div class="s-price">From $350 <span>/ session</span></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="s-num">02</div>
+        <div class="s-name">Infant &amp; Milestone</div>
+        <div class="s-desc">Sitter sessions, cake smashes, first steps — every stage of that first year is worth celebrating. Custom setups tailored to your little one's personality.</div>
+        <div class="s-price">From $275 <span>/ session</span></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="s-num">03</div>
+        <div class="s-name">Maternity &amp; Family</div>
+        <div class="s-desc">Bump portraits, sibling introductions, and family lifestyle sessions. Natural, warm, and entirely you — no stiff poses, just real moments.</div>
+        <div class="s-price">From $295 <span>/ session</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURED CALLOUT ─── -->
+  <section class="feature-section">
+    <div class="feature-text">
+      <div class="section-eyebrow reveal">Did you know?</div>
+      <h2 class="section-title reveal">The newborn window<br><em>is just 14 days.</em></h2>
+      <p class="feature-body reveal">
+        Newborns begin gaining weight again at two weeks — and with that weight
+        comes change. Those curled-up, sleepy poses that feel so natural in the
+        first days become harder to achieve as your baby grows stronger and more
+        alert. The best time to book is during your third trimester, so your
+        session is reserved and ready the moment your little one arrives.
+      </p>
+      <a class="btn-primary reveal" href="#booking" style="align-self: flex-start;">Reserve your spot now</a>
+    </div>
+    <div class="feature-img">
+      <div class="feature-tag">Book during your third trimester</div>
+    </div>
+  </section>
+
+  <!-- ─── BOOKING ─── -->
+  <section class="booking-section" id="booking">
+    <div class="booking-inner">
+      <div class="section-eyebrow reveal">Ready to begin?</div>
+      <h2 class="section-title reveal">Book your session<br>with <em>Tia</em></h2>
+      <p class="booking-sub reveal">
+        Choose a time that works for your family. Tia will follow up within 24 hours
+        to confirm details, answer questions, and start planning your perfect session.
+      </p>
+      <div class="booking-widget-placeholder reveal">
+        <span class="bwp-label">Sessions booking widget</span>
+        <p class="bwp-note">Your Sessions embed will appear here once your account is connected.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Your Little Bundle</div>
+        <div class="footer-tagline">Tia Farmer Photography</div>
+        <p class="footer-bio">
+          Newborn and infant photography in [Your City]. Every session is
+          approached with care, intention, and a deep respect for the trust
+          you place in me with your most precious moments.
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#gallery">Portfolio</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Tia</a></li>
+          <li><a href="#booking">Book a session</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Contact Tia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Your Little Bundle · Tia Farmer Photography</span>
+      <span class="footer-cert-small">Certified · AANPS</span>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Nav shrink on scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Gallery tag filter (visual only for now)
+    document.querySelectorAll('.g-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        document.querySelectorAll('.g-tag').forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
