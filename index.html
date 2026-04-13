@@ -11,19 +11,23 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:     #FAF8F4;
-      --cream-mid: #F2EDE4;
-      --cream-deep:#E8DFD0;
-      --gold:      #C4A35A;
-      --gold-light:#D9BC82;
-      --gold-pale: #EFE3C2;
-      --ink:       #1C1916;
-      --ink-mid:   #3A342C;
-      --ink-soft:  #7A6E61;
-      --ink-muted: #B0A494;
-      --white:     #FFFFFF;
-      --serif:     'Playfair Display', Georgia, serif;
-      --sans:      'Jost', sans-serif;
+      --cream:      #FDF8F5;
+      --cream-mid:  #F7EEE9;
+      --cream-deep: #EFE0D8;
+      --blush:      #E8B4A8;
+      --blush-light:#F2CEC6;
+      --blush-pale: #FAE8E4;
+      --rose:       #C4726A;
+      --rose-deep:  #A85850;
+      --mocha:      #2C1F1A;
+      --mocha-mid:  #4A3530;
+      --ink:        #5C3D3A;
+      --ink-mid:    #7A524E;
+      --ink-soft:   #A07874;
+      --ink-muted:  #C4A09C;
+      --white:      #FFFFFF;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Jost', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -40,7 +44,7 @@
     #cursor {
       width: 10px; height: 10px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--mocha);
       position: fixed; top: 0; left: 0;
       pointer-events: none;
       z-index: 9999;
@@ -50,7 +54,7 @@
     }
     #cursor.hover {
       width: 40px; height: 40px;
-      background: var(--gold-pale);
+      background: var(--blush-pale);
     }
 
     /* ─── NOISE TEXTURE OVERLAY ─── */
@@ -88,7 +92,7 @@
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--rose);
       margin-top: 2px;
     }
 
@@ -107,7 +111,7 @@
     .nav-links a::after {
       content: '';
       position: absolute; bottom: -2px; left: 0; right: 0; height: 0.5px;
-      background: var(--gold);
+      background: var(--blush);
       transform: scaleX(0);
       transform-origin: right;
       transition: transform 0.3s ease;
@@ -120,7 +124,7 @@
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      background: var(--ink);
+      background: var(--mocha);
       color: var(--cream);
       padding: 11px 24px;
       border: none;
@@ -129,7 +133,7 @@
       font-weight: 400;
       transition: background 0.3s ease, color 0.3s ease;
     }
-    .nav-cta:hover { background: var(--gold); color: var(--ink); }
+    .nav-cta:hover { background: var(--mocha-mid); color: var(--cream); }
 
     /* ─── HERO ─── */
     .hero {
@@ -141,7 +145,7 @@
     }
 
     .hero-left {
-      background: var(--ink);
+      background: var(--mocha);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -157,7 +161,7 @@
       top: -120px; right: -120px;
       width: 380px; height: 380px;
       border-radius: 50%;
-      border: 0.5px solid rgba(196,163,90,0.2);
+      border: 0.5px solid rgba(253,248,245,0.25);
     }
     .hero-left::after {
       content: '';
@@ -165,14 +169,14 @@
       top: -80px; right: -80px;
       width: 280px; height: 280px;
       border-radius: 50%;
-      border: 0.5px solid rgba(196,163,90,0.12);
+      border: 0.5px solid rgba(253,248,245,0.15);
     }
 
     .hero-eyebrow {
       font-size: 12px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--blush-pale);
       margin-bottom: 20px;
       animation: fadeUp 1s ease both;
     }
@@ -188,16 +192,16 @@
     }
     .hero-title em {
       font-style: italic;
-      color: var(--gold-light);
+      color: var(--blush-pale);
     }
 
     .hero-quote {
       font-size: 16px;
       line-height: 1.85;
-      color: var(--ink-muted);
+      color: rgba(253,248,245,0.75);
       font-weight: 400;
       max-width: 380px;
-      border-left: 1px solid var(--gold);
+      border-left: 1px solid rgba(253,248,245,0.5);
       padding-left: 18px;
       margin-bottom: 44px;
       animation: fadeUp 1s 0.3s ease both;
@@ -212,8 +216,8 @@
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      background: var(--gold);
-      color: var(--ink);
+      background: var(--cream);
+      color: var(--rose);
       padding: 14px 32px;
       border: none;
       cursor: none;
@@ -221,12 +225,23 @@
       font-weight: 500;
       transition: background 0.3s;
     }
-    .btn-primary:hover { background: var(--gold-light); }
+    .btn-primary:hover { background: var(--blush-pale); }
     .btn-ghost {
       font-family: var(--sans);
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      background: transparent;
+      color: rgba(253,248,245,0.8);
+      padding: 14px 0;
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 0.5px solid rgba(253,248,245,0.4);
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--cream); border-color: rgba(253,248,245,0.8); }
       background: transparent;
       color: var(--cream-deep);
       padding: 14px 0;
@@ -237,31 +252,31 @@
       border-bottom: 0.5px solid var(--ink-soft);
       transition: color 0.3s, border-color 0.3s;
     }
-    .btn-ghost:hover { color: var(--gold-light); border-color: var(--gold); }
+    .btn-ghost:hover { color: var(--blush-light); border-color: var(--rose); }
 
     .hero-cert {
       margin-top: 48px;
       padding-top: 24px;
-      border-top: 0.5px solid rgba(255,255,255,0.08);
+      border-top: 0.5px solid rgba(253,248,245,0.2);
       display: flex; align-items: center; gap: 12px;
       animation: fadeUp 1s 0.6s ease both;
     }
     .cert-badge {
       width: 36px; height: 36px;
       border-radius: 50%;
-      border: 0.5px solid var(--gold);
+      border: 0.5px solid rgba(253,248,245,0.6);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .cert-badge svg { width: 16px; height: 16px; fill: var(--gold); }
+    .cert-badge svg { width: 16px; height: 16px; fill: var(--cream); }
     .cert-text {
       font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--ink-muted);
+      color: rgba(253,248,245,0.7);
       line-height: 1.6;
     }
-    .cert-text strong { color: var(--gold); font-weight: 400; }
+    .cert-text strong { color: var(--cream); font-weight: 500; }
 
     /* Hero right — photo mosaic placeholder */
     .hero-right {
@@ -270,7 +285,7 @@
     }
     .hero-right-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(160deg, #6b5a47 0%, #3a2e23 40%, #1e1810 100%);
+      background: linear-gradient(160deg, #6b4a3e 0%, #4a3530 40%, #2c1f1a 100%);
     }
     .hero-mosaic {
       position: absolute; inset: 0;
@@ -280,17 +295,17 @@
       gap: 2px;
     }
     .mosaic-cell {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.1);
       position: relative; overflow: hidden;
     }
     .mosaic-cell::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(196,163,90,0.06), transparent);
+      background: linear-gradient(135deg, rgba(253,248,245,0.1), transparent);
     }
-    .mosaic-cell:nth-child(1) { grid-column: span 2; background: rgba(255,255,255,0.06); }
-    .mosaic-cell:nth-child(2) { background: rgba(255,255,255,0.03); }
-    .mosaic-cell:nth-child(3) { background: rgba(255,255,255,0.05); }
+    .mosaic-cell:nth-child(1) { grid-column: span 2; background: rgba(255,255,255,0.12); }
+    .mosaic-cell:nth-child(2) { background: rgba(255,255,255,0.06); }
+    .mosaic-cell:nth-child(3) { background: rgba(255,255,255,0.09); }
 
     /* Scroll indicator */
     .scroll-hint {
@@ -301,14 +316,14 @@
     }
     .scroll-line {
       width: 0.5px; height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
+      background: linear-gradient(to bottom, var(--mocha), transparent);
       animation: scrollPulse 2s ease infinite;
     }
     .scroll-label {
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--mocha);
       writing-mode: vertical-lr;
       transform: rotate(180deg);
     }
@@ -331,7 +346,7 @@
       font-family: var(--serif);
       font-size: 38px;
       font-weight: 400;
-      color: var(--gold);
+      color: var(--rose);
       display: block;
     }
     .strip-label {
@@ -352,21 +367,21 @@
     .intro-img-wrap {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(155deg, #7a6553 0%, #3d3025 100%);
+      background: linear-gradient(155deg, #6b4a3e 0%, #2c1f1a 100%);
     }
     .intro-img-decor {
       position: absolute;
       bottom: 32px; right: 32px;
       width: 160px; height: 160px;
       border-radius: 50%;
-      border: 0.5px solid rgba(196,163,90,0.35);
+      border: 0.5px solid rgba(253,248,245,0.4);
     }
     .intro-img-decor2 {
       position: absolute;
       bottom: 52px; right: 52px;
       width: 120px; height: 120px;
       border-radius: 50%;
-      border: 0.5px solid rgba(196,163,90,0.2);
+      border: 0.5px solid rgba(253,248,245,0.25);
     }
     .intro-text {
       background: var(--cream);
@@ -377,7 +392,7 @@
       font-size: 12px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--rose);
       margin-bottom: 16px;
     }
     .section-title {
@@ -388,7 +403,7 @@
       color: var(--ink);
       margin-bottom: 20px;
     }
-    .section-title em { font-style: italic; color: var(--gold); }
+    .section-title em { font-style: italic; color: var(--mocha-mid); }
     .section-body {
       font-size: 16px;
       line-height: 1.85;
@@ -403,11 +418,11 @@
       text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
-      border-bottom: 0.5px solid var(--gold);
+      border-bottom: 0.5px solid var(--rose);
       padding-bottom: 3px;
       transition: color 0.3s;
     }
-    .inline-link:hover { color: var(--gold); }
+    .inline-link:hover { color: var(--mocha); }
 
     /* ─── GALLERY ─── */
     .gallery-section {
@@ -427,21 +442,21 @@
     .g-cell {
       overflow: hidden;
       position: relative;
-      background: linear-gradient(135deg, #7a6553 0%, #3d3025 100%);
+      background: linear-gradient(135deg, #e8b4a8 0%, #c4726a 100%);
     }
     .g-cell::after {
       content: '';
       position: absolute; inset: 0;
-      background: rgba(26,25,22,0);
+      background: rgba(196,114,106,0);
       transition: background 0.4s ease;
     }
-    .g-cell:hover::after { background: rgba(26,25,22,0.25); }
-    .g-cell:nth-child(1) { grid-column: 1 / 6; background: linear-gradient(145deg, #8a7260 0%, #4a3b2e 100%); }
-    .g-cell:nth-child(2) { grid-column: 6 / 10; background: linear-gradient(145deg, #6b5847 0%, #352a20 100%); }
-    .g-cell:nth-child(3) { grid-column: 10 / 13; background: linear-gradient(145deg, #5c4d3d 0%, #2e2419 100%); }
-    .g-cell:nth-child(4) { grid-column: 1 / 4; background: linear-gradient(145deg, #7a6553 0%, #3d3025 100%); }
-    .g-cell:nth-child(5) { grid-column: 4 / 8; background: linear-gradient(145deg, #8f7763 0%, #4d3e30 100%); }
-    .g-cell:nth-child(6) { grid-column: 8 / 13; background: linear-gradient(145deg, #655444 0%, #332820 100%); }
+    .g-cell:hover::after { background: rgba(196,114,106,0.2); }
+    .g-cell:nth-child(1) { grid-column: 1 / 6; background: linear-gradient(145deg, #e8c0b8 0%, #c4726a 100%); }
+    .g-cell:nth-child(2) { grid-column: 6 / 10; background: linear-gradient(145deg, #d4a09a 0%, #b86860 100%); }
+    .g-cell:nth-child(3) { grid-column: 10 / 13; background: linear-gradient(145deg, #ebb4ae 0%, #c47870 100%); }
+    .g-cell:nth-child(4) { grid-column: 1 / 4; background: linear-gradient(145deg, #f2cec6 0%, #d4897e 100%); }
+    .g-cell:nth-child(5) { grid-column: 4 / 8; background: linear-gradient(145deg, #e0aea6 0%, #c06860 100%); }
+    .g-cell:nth-child(6) { grid-column: 8 / 13; background: linear-gradient(145deg, #d8988e 0%, #b46058 100%); }
 
     .gallery-tags {
       display: flex; gap: 24px; margin-top: 24px;
@@ -453,25 +468,25 @@
       color: var(--ink-muted);
       cursor: pointer;
     }
-    .g-tag.active { color: var(--gold); border-bottom: 0.5px solid var(--gold); padding-bottom: 2px; }
+    .g-tag.active { color: var(--rose); border-bottom: 0.5px solid var(--blush); padding-bottom: 2px; }
 
     /* ─── SERVICES ─── */
     .services-section {
-      background: var(--ink);
+      background: var(--blush-pale);
       padding: 88px 56px;
     }
-    .services-section .section-title { color: var(--cream); }
+    .services-section .section-title { color: var(--ink); }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 1px;
-      background: rgba(255,255,255,0.06);
+      background: var(--blush-light);
       margin-top: 48px;
-      border: 0.5px solid rgba(255,255,255,0.06);
+      border: 0.5px solid var(--blush-light);
     }
     .service-card {
-      background: var(--ink);
-      padding: 44px 36px;
+      background: var(--cream);
+      padding: 52px 56px;
       border: none;
       position: relative;
       overflow: hidden;
@@ -481,34 +496,34 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--blush), transparent);
       transform: scaleX(0);
       transition: transform 0.4s ease;
     }
-    .service-card:hover { background: #232018; }
+    .service-card:hover { background: var(--blush-pale); }
     .service-card:hover::before { transform: scaleX(1); }
     .s-num {
       font-family: var(--serif);
       font-size: 52px;
       font-weight: 400;
-      color: rgba(196,163,90,0.15);
+      color: var(--blush-light);
       line-height: 1;
       margin-bottom: 16px;
       transition: color 0.4s;
     }
-    .service-card:hover .s-num { color: rgba(196,163,90,0.3); }
+    .service-card:hover .s-num { color: var(--rose); }
     .s-name {
       font-size: 13px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--cream);
+      color: var(--mocha-mid);
       margin-bottom: 14px;
       font-weight: 500;
     }
     .s-desc {
       font-size: 15px;
-      color: var(--ink-muted);
+      color: var(--ink-soft);
       line-height: 1.8;
       font-weight: 400;
       margin-bottom: 28px;
@@ -516,14 +531,14 @@
     .s-price {
       font-family: var(--serif);
       font-size: 24px;
-      color: var(--gold);
+      color: var(--mocha);
       font-weight: 400;
     }
     .s-price span {
       font-family: var(--sans);
       font-size: 10px;
       letter-spacing: 0.1em;
-      color: var(--ink-soft);
+      color: var(--ink-muted);
       margin-left: 6px;
     }
 
@@ -534,80 +549,127 @@
       min-height: 520px;
     }
     .feature-text {
-      background: var(--gold-pale);
+      background: var(--cream-mid);
       padding: 80px 64px;
       display: flex; flex-direction: column; justify-content: center;
     }
-    .feature-text .section-eyebrow { color: var(--ink-soft); }
+    .feature-text .section-eyebrow { color: var(--rose); }
     .feature-text .section-title { color: var(--ink); }
     .feature-body {
       font-size: 16px;
       line-height: 1.9;
-      color: var(--ink-mid);
+      color: var(--ink-soft);
       font-weight: 400;
       margin-bottom: 36px;
       max-width: 400px;
     }
     .feature-img {
-      background: linear-gradient(145deg, #9a8470 0%, #4a3c2e 100%);
+      background: linear-gradient(145deg, #6b4a3e 0%, #2c1f1a 100%);
       position: relative; overflow: hidden;
     }
     .feature-tag {
       position: absolute;
       bottom: 32px; left: 32px;
-      background: var(--ink);
-      color: var(--gold);
+      background: var(--cream);
+      color: var(--mocha);
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       padding: 10px 18px;
     }
 
-    /* ─── BOOKING ─── */
-    .booking-section {
+    /* ─── CONTACT FORM ─── */
+    .contact-section {
       background: var(--cream-mid);
-      padding: 100px 56px;
-      text-align: center;
+      padding: 88px 56px;
     }
-    .booking-inner { max-width: 620px; margin: 0 auto; }
-    .booking-section .section-title { margin-bottom: 14px; }
-    .booking-sub {
-      font-size: 16px;
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .contact-left {}
+    .contact-note {
+      font-size: 14px;
       color: var(--ink-soft);
-      line-height: 1.9;
-      font-weight: 400;
-      margin-bottom: 48px;
+      line-height: 1.85;
+      margin-top: 20px;
+      padding: 16px 20px;
+      border-left: 2px solid var(--blush);
+      background: var(--blush-pale);
     }
-    .booking-widget-placeholder {
-      border: 0.5px dashed var(--gold);
-      padding: 52px 40px;
-      background: rgba(255,255,255,0.5);
-      margin-bottom: 28px;
-      position: relative;
-    }
-    .booking-widget-placeholder::before {
-      content: '';
-      position: absolute;
-      top: 6px; left: 6px; right: 6px; bottom: 6px;
-      border: 0.5px dashed rgba(196,163,90,0.3);
-      pointer-events: none;
-    }
-    .bwp-label {
-      font-size: 13px;
+    .contact-note strong { color: var(--rose); font-weight: 500; }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 8px;
+      color: var(--ink-soft);
+      font-weight: 500;
     }
-    .bwp-note {
-      font-size: 14px;
-      color: var(--ink-muted);
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--cream);
+      border: 0.5px solid var(--cream-deep);
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.3s;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
     }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A07874' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--rose); }
+    .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--ink-muted); }
+    .form-submit {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--mocha);
+      color: var(--cream);
+      padding: 16px 40px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      align-self: flex-start;
+      transition: background 0.3s;
+    }
+    .form-submit:hover { background: var(--mocha-mid); }
+    .form-success {
+      display: none;
+      padding: 20px;
+      background: var(--blush-pale);
+      border-left: 2px solid var(--rose);
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    .form-success strong { color: var(--rose); }
 
     /* ─── FOOTER ─── */
     footer {
-      background: var(--ink);
+      background: var(--mocha);
       padding: 56px;
     }
     .footer-top {
@@ -615,7 +677,7 @@
       grid-template-columns: 2fr 1fr 1fr;
       gap: 56px;
       padding-bottom: 40px;
-      border-bottom: 0.5px solid rgba(255,255,255,0.07);
+      border-bottom: 0.5px solid rgba(253,248,245,0.2);
       margin-bottom: 36px;
     }
     .footer-brand {}
@@ -631,12 +693,12 @@
       font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--blush-pale);
       margin-bottom: 16px;
     }
     .footer-bio {
       font-size: 14px;
-      color: var(--ink-soft);
+      color: rgba(253,248,245,0.7);
       line-height: 1.8;
       font-weight: 400;
       max-width: 280px;
@@ -645,7 +707,7 @@
       font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--blush-pale);
       margin-bottom: 18px;
     }
     .footer-links {
@@ -653,26 +715,123 @@
     }
     .footer-links a {
       font-size: 14px;
-      color: var(--ink-soft);
+      color: rgba(253,248,245,0.65);
       text-decoration: none;
       transition: color 0.3s;
       font-weight: 400;
     }
-    .footer-links a:hover { color: var(--gold-light); }
+    .footer-links a:hover { color: var(--cream); }
     .footer-bottom {
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-copy {
       font-size: 13px;
-      color: var(--ink-muted);
+      color: rgba(253,248,245,0.5);
       letter-spacing: 0.06em;
     }
     .footer-cert-small {
       font-size: 12px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(196,163,90,0.5);
+      color: rgba(253,248,245,0.45);
     }
+
+    /* ─── CLICK TO TEXT ─── */
+    .float-text {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      z-index: 200;
+      display: flex; align-items: center; gap: 12px;
+      background: var(--mocha);
+      color: var(--cream);
+      padding: 14px 22px;
+      text-decoration: none;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      box-shadow: 0 4px 24px rgba(44,31,26,0.25);
+      transition: background 0.3s, transform 0.2s;
+      cursor: none;
+    }
+    .float-text:hover { background: var(--mocha-mid); transform: translateY(-2px); }
+    .float-text-icon {
+      width: 18px; height: 18px; flex-shrink: 0;
+      fill: var(--blush-light);
+    }
+    .float-text-label { line-height: 1.3; }
+    .float-text-label span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blush-light);
+      font-weight: 400;
+    }
+
+    .btn-text {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--cream);
+      padding: 13px 24px;
+      border: 0.5px solid rgba(253,248,245,0.5);
+      cursor: none;
+      text-decoration: none;
+      font-weight: 400;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .btn-text:hover { border-color: var(--cream); background: rgba(253,248,245,0.08); }
+    .btn-text svg { width: 14px; height: 14px; fill: var(--blush-light); flex-shrink: 0; }
+
+    .consult-strip {
+      background: var(--mocha);
+      padding: 28px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+      border-top: none;
+    }
+    .consult-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blush);
+      margin-bottom: 4px;
+    }
+    .consult-headline {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .consult-headline em { font-style: italic; color: var(--blush-light); }
+    .consult-sub {
+      font-size: 14px;
+      color: rgba(253,248,245,0.6);
+      margin-top: 4px;
+    }
+    .btn-consult {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--blush);
+      color: var(--mocha);
+      padding: 15px 32px;
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex; align-items: center; gap: 10px;
+      white-space: nowrap;
+      transition: background 0.3s;
+      flex-shrink: 0;
+    }
+    .btn-consult:hover { background: var(--blush-light); }
+    .btn-consult svg { width: 16px; height: 16px; fill: var(--mocha); flex-shrink: 0; }
 
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
@@ -712,6 +871,9 @@
       .services-grid { grid-template-columns: 1fr; }
       .feature-section { grid-template-columns: 1fr; }
       .feature-img { height: 300px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-section { padding: 56px 24px; }
       .footer-top { grid-template-columns: 1fr; gap: 36px; }
       footer { padding: 40px 24px; }
       .booking-section { padding: 64px 24px; }
@@ -723,6 +885,17 @@
   <!-- Custom cursor -->
   <div id="cursor"></div>
 
+  <!-- ─── FLOATING TEXT BUTTON ─── -->
+  <a class="float-text" href="sms:+11234567890&body=Hi!%20I%27d%20love%20to%20book%20a%20free%20video%20consultation%20with%20Tia.">
+    <svg class="float-text-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zm-2 10H6v-2h12v2zm0-4H6V6h12v2z"/>
+    </svg>
+    <div class="float-text-label">
+      Text Me
+      <span>Free video consultation</span>
+    </div>
+  </a>
+
   <!-- ─── NAV ─── -->
   <nav id="main-nav">
     <a class="nav-logo" href="#">
@@ -733,7 +906,7 @@
       <li><a href="#gallery">Portfolio</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#booking">Contact</a></li>
+      <li><a href="#consult">Contact</a></li>
     </ul>
     <a class="nav-cta" href="#booking">Book a Session</a>
   </nav>
@@ -741,20 +914,23 @@
   <!-- ─── HERO ─── -->
   <section class="hero" id="home">
     <div class="hero-left">
-      <div class="hero-eyebrow">Newborn &amp; Infant Photography</div>
+      <div class="hero-eyebrow">Newborn Photography</div>
       <h1 class="hero-title">
-        Every tiny detail<br>
-        is worth<br>
-        <em>remembering.</em>
+        More than photos —<br>
+        <em>a place to belong.</em>
       </h1>
       <p class="hero-quote">
-        Newborns change every single day. Those first sleepy curls,
-        those impossibly small fingers — they won't last. Let's make
-        sure you never forget them.
+        When your children see themselves in the photos on your walls,
+        they hear something powerful: <em>I matter. I belong here.</em>
+        I'm here to make sure they always know it.
       </p>
       <div class="hero-actions">
         <a class="btn-primary" href="#booking">Book your session</a>
         <a class="btn-ghost" href="#gallery">View portfolio</a>
+        <a class="btn-text" href="sms:+11234567890&body=Hi!%20I%27d%20love%20to%20book%20a%20free%20video%20consultation%20with%20Tia.">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zm-2 10H6v-2h12v2zm0-4H6V6h12v2z"/></svg>
+          Free consult
+        </a>
       </div>
       <div class="hero-cert">
         <div class="cert-badge">
@@ -786,7 +962,7 @@
   <div class="strip">
     <div class="strip-item reveal">
       <span class="strip-num">2 wks</span>
-      <span class="strip-label">Ideal newborn window</span>
+      <span class="strip-label">Ideal session window</span>
     </div>
     <div class="strip-item reveal reveal-delay-1">
       <span class="strip-num">Safe</span>
@@ -794,7 +970,7 @@
     </div>
     <div class="strip-item reveal reveal-delay-2">
       <span class="strip-num">100+</span>
-      <span class="strip-label">Families served</span>
+      <span class="strip-label">Sessions captured</span>
     </div>
     <div class="strip-item reveal reveal-delay-3">
       <span class="strip-num">∞</span>
@@ -810,17 +986,17 @@
     </div>
     <div class="intro-text">
       <div class="section-eyebrow reveal">The artist behind the lens</div>
-      <h2 class="section-title reveal">Hi, I'm Tia —<br><em>and I see the magic</em><br>others rush past.</h2>
+      <h2 class="section-title reveal">Hi, I'm Tia —<br><em>I believe every child</em><br>deserves to feel seen.</h2>
       <p class="section-body reveal">
-        Did you know that newborns begin gaining weight again at just two weeks old?
-        Every day brings change — and every change is something worth holding on to.
-        I created Your Little Bundle because I believe those fleeting, delicate
-        moments deserve to be captured beautifully, safely, and with intention.
+        I'll do whatever it takes to make sure your child grows up knowing
+        they matter — that they are loved, they belong, and they are an
+        irreplaceable part of your family. That's not just something I say.
+        It's the reason I pick up my camera every single day.
       </p>
       <p class="section-body reveal" style="margin-bottom: 32px;">
         As a certified member of the American Association of Newborn Photography Safety,
-        I prioritize your baby's comfort and wellbeing in every pose, every setup,
-        and every shot.
+        I also ensure every session is handled with the utmost care for your
+        baby's comfort and wellbeing — from the first pose to the final shot.
       </p>
       <a class="inline-link reveal" href="#booking">Let's work together →</a>
     </div>
@@ -844,71 +1020,121 @@
       <div class="g-cell"></div>
     </div>
     <div class="gallery-tags reveal">
-      <span class="g-tag active">Newborn</span>
-      <span class="g-tag">Infant</span>
-      <span class="g-tag">Maternity</span>
-      <span class="g-tag">Family</span>
-      <span class="g-tag">Milestone</span>
+      <span class="g-tag active">All Sessions</span>
     </div>
   </section>
 
   <!-- ─── SERVICES ─── -->
   <section class="services-section" id="services">
-    <div class="section-eyebrow" style="color: var(--gold);" class="reveal">What I offer</div>
-    <h2 class="section-title reveal">Sessions crafted<br>for <em>every milestone</em></h2>
+    <div class="section-eyebrow reveal" style="color: var(--rose);">What I offer</div>
+    <h2 class="section-title reveal">A session as unique<br>as <em>your little one</em></h2>
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="s-num">01</div>
         <div class="s-name">Newborn Sessions</div>
-        <div class="s-desc">Best captured within the first 5–14 days. Sleepy poses, cozy wraps, and all those tiny details — done with safety-first techniques by a certified professional.</div>
-        <div class="s-price">From $350 <span>/ session</span></div>
+        <div class="s-desc">Best captured within the first 5–14 days. Those sleepy curls and tiny fingers won't last — let's preserve them beautifully and safely before they're gone.</div>
+        <div class="s-price">No session fees <span>· $100 retainer applied to your purchase</span></div>
       </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="s-num">02</div>
-        <div class="s-name">Infant &amp; Milestone</div>
-        <div class="s-desc">Sitter sessions, cake smashes, first steps — every stage of that first year is worth celebrating. Custom setups tailored to your little one's personality.</div>
-        <div class="s-price">From $275 <span>/ session</span></div>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="s-num">03</div>
-        <div class="s-name">Maternity &amp; Family</div>
-        <div class="s-desc">Bump portraits, sibling introductions, and family lifestyle sessions. Natural, warm, and entirely you — no stiff poses, just real moments.</div>
-        <div class="s-price">From $295 <span>/ session</span></div>
-      </div>
+
     </div>
   </section>
 
-  <!-- ─── FEATURED CALLOUT ─── -->
+  <!-- ─── PHILOSOPHY ─── -->
   <section class="feature-section">
     <div class="feature-text">
-      <div class="section-eyebrow reveal">Did you know?</div>
-      <h2 class="section-title reveal">The newborn window<br><em>is just 14 days.</em></h2>
+      <div class="section-eyebrow reveal">Why it matters</div>
+      <h2 class="section-title reveal">Photos tell your child<br><em>"You belong here."</em></h2>
       <p class="feature-body reveal">
-        Newborns begin gaining weight again at two weeks — and with that weight
-        comes change. Those curled-up, sleepy poses that feel so natural in the
-        first days become harder to achieve as your baby grows stronger and more
-        alert. The best time to book is during your third trimester, so your
-        session is reserved and ready the moment your little one arrives.
+        Child development experts have long understood that when children see
+        photos of themselves displayed in their home — surrounded by their family —
+        it sends a message they carry for life: <em>I matter. I am loved. I belong.</em>
       </p>
-      <a class="btn-primary reveal" href="#booking" style="align-self: flex-start;">Reserve your spot now</a>
+      <p class="feature-body reveal" style="margin-top: -16px;">
+        That repeated visual cue builds self-esteem, strengthens their sense of
+        identity, and reinforces that they are part of a stable, loving unit.
+        Research dating back to Ammermann &amp; Fryrear (1975) describes family
+        photos as an <em>identity mirror</em> — a reflection that quietly tells
+        a child who they are and where they come from.
+      </p>
+      <p class="feature-body reveal" style="margin-top: -16px; margin-bottom: 36px;">
+        I work closely with every family to ensure that what ends up on your
+        walls — and in your child's heart — is something true, something beautiful,
+        and something worth growing up with.
+      </p>
+      <a class="btn-primary reveal" href="#booking" style="align-self: flex-start; background: var(--mocha); color: var(--cream);">Start the conversation</a>
     </div>
     <div class="feature-img">
-      <div class="feature-tag">Book during your third trimester</div>
+      <div class="feature-tag">Every child deserves to feel seen</div>
     </div>
   </section>
 
-  <!-- ─── BOOKING ─── -->
-  <section class="booking-section" id="booking">
-    <div class="booking-inner">
-      <div class="section-eyebrow reveal">Ready to begin?</div>
-      <h2 class="section-title reveal">Book your session<br>with <em>Tia</em></h2>
-      <p class="booking-sub reveal">
-        Choose a time that works for your family. Tia will follow up within 24 hours
-        to confirm details, answer questions, and start planning your perfect session.
-      </p>
-      <div class="booking-widget-placeholder reveal">
-        <span class="bwp-label">Sessions booking widget</span>
-        <p class="bwp-note">Your Sessions embed will appear here once your account is connected.</p>
+  <!-- ─── FREE CONSULT STRIP ─── -->
+  <div class="consult-strip" id="consult">
+    <div class="consult-text">
+      <div class="consult-label">Not sure where to start?</div>
+      <div class="consult-headline">Let's chat over a <em>free video call.</em></div>
+      <div class="consult-sub">Just 15 minutes to talk about your family, your vision, and what you want your child to grow up seeing.</div>
+    </div>
+    <a class="btn-consult" href="sms:+11234567890&body=Hi!%20I%27d%20love%20to%20book%20a%20free%20video%20consultation%20with%20Tia.">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zm-2 10H6v-2h12v2zm0-4H6V6h12v2z"/></svg>
+      Text to book a free consult
+    </a>
+  </div>
+
+
+
+  <!-- ─── CONTACT FORM ─── -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="section-eyebrow reveal">Prefer to reach out another way?</div>
+        <h2 class="section-title reveal">Send me<br>a <em>message.</em></h2>
+        <p class="section-body reveal">
+          If you're on a computer or just prefer email, I'd still love to hear
+          from you. Fill out the form and I'll be in touch within 24 hours to
+          start the conversation.
+        </p>
+        <div class="contact-note reveal">
+          <strong>On your phone?</strong> The fastest way to reach me is a quick text.
+          Hit the button at the bottom of the page and I'll reply personally — usually same day.
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" placeholder="Jane Smith" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" placeholder="(555) 000-0000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="jane@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="contact-pref">Preferred contact method</label>
+          <select id="contact-pref">
+            <option value="" disabled selected>Select one</option>
+            <option value="text">Text</option>
+            <option value="call">Call</option>
+            <option value="email">Email</option>
+            <option value="either">Either is fine</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="due-date">Baby's due date or current age</label>
+          <input type="text" id="due-date" placeholder="e.g. Due July 2025, or 3 weeks old" />
+        </div>
+        <div class="form-group">
+          <label for="message">Anything you'd like to share</label>
+          <textarea id="message" placeholder="Tell me a little about your family, what you're hoping for, or any questions you have..."></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">Send my message</button>
+        <div class="form-success" id="form-success">
+          <strong>Message received!</strong> Thank you for reaching out. I'll be in touch within 24 hours — I can't wait to learn more about your family.
+        </div>
       </div>
     </div>
   </section>
@@ -920,9 +1146,9 @@
         <div class="footer-logo">Your Little Bundle</div>
         <div class="footer-tagline">Tia Farmer Photography</div>
         <p class="footer-bio">
-          Newborn and infant photography in [Your City]. Every session is
-          approached with care, intention, and a deep respect for the trust
-          you place in me with your most precious moments.
+          Newborn photography in [Your City]. I work with every
+          family to ensure their children grow up seeing themselves — and knowing
+          without a doubt that they belong.
         </p>
       </div>
       <div>
@@ -930,7 +1156,7 @@
         <ul class="footer-links">
           <li><a href="#gallery">Portfolio</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#about">About Tia</a></li>
+          <li><a href="#about">About Me</a></li>
           <li><a href="#booking">Book a session</a></li>
         </ul>
       </div>
@@ -939,7 +1165,7 @@
         <ul class="footer-links">
           <li><a href="#">Instagram</a></li>
           <li><a href="#">Facebook</a></li>
-          <li><a href="#">Contact Tia</a></li>
+          <li><a href="#contact">Get in Touch</a></li>
         </ul>
       </div>
     </div>
@@ -950,13 +1176,27 @@
   </footer>
 
   <script>
+    // Form submit
+    function handleSubmit() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (!name || !email) {
+        alert('Please fill in at least your name and email.');
+        return;
+      }
+      document.querySelector('.contact-form').style.opacity = '0.4';
+      document.querySelector('.contact-form').style.pointerEvents = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
     // Custom cursor
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     });
-    document.querySelectorAll('a, button').forEach(el => {
+    document.querySelectorAll('a, button, .float-text, .btn-consult').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
